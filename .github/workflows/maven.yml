@@ -25,3 +25,88 @@ jobs:
         path: src/app-demo-v1.jar
     - name: Build with Maven
       run: mvn -B package -DoutputDirectory=target/ --file pom.xml 
+      
+deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    env:
+      WORK_DIR: "./terraform"
+    
+    outputs:
+      api_endpoint: ${{ steps.apply_step.outputs.endpoint }}
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@13d241b293754004c80624b5567555c4a39ffbe3
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ env.AWS_DEFAULT_REGION }}
+      
+      - uses: actions/download-artifact@master
+        with:
+          name: archive
+          path: ./
+
+      - name: Move artifact to terraform dir
+        run: mv ./app-demo-v1.jar ./terraform/app-demo-v1.jar
+
+      - name: Terraform Init
+        working-directory: ${{ env.WORK_DIR }}
+        run: terraform init
+
+      - name: Terraform Format
+        working-directory: ${{ env.WORK_DIR }}
+        run: terraform fmt -check
+
+      - name: Terraform Plan
+        working-directory: ${{ env.WORK_DIR }}
+        run: terraform plan
+
+      - name: Terraform Apply
+        working-directory: ${{ env.WORK_DIR }}
+        id: apply_step
+        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+        run: |
+          terraform apply -auto-approve
+          echo "::set-output name=endpoint::$(terraform output -raw base_url)/api"
+  test:
+    runs-on: ubuntu-latest
+    needs: deploy
+
+    env:
+      ENDPOINT: ${{ needs.deploy.outputs.api_endpoint }}
+
+    steps:
+      - name: Check "GET"
+        run: |
+          curl $ENDPOINT
+      - name: Check "POST"
+        run: |
+          curl --header "Content-Type: application/json" --data '{"username":"xyz","password":"xyz"}' $ENDPOINT
+      - name: Check "PUT"
+        run: |
+          curl -X PUT --header "Content-Type: application/json" --data '{"username":"xyz","password":"xyz"}' $ENDPOINT
+  destroy:
+    runs-on: ubuntu-latest
+    needs: test
+    env:
+      WORK_DIR: "./terraform"
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@13d241b293754004c80624b5567555c4a39ffbe3
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ env.AWS_DEFAULT_REGION }}
+
+      - name: Terraform Init
+        working-directory: ${{ env.WORK_DIR }}
+        run: terraform init
+
+      - name: Terraform Destroy
+        working-directory: ${{ env.WORK_DIR }}
+        run: terraform destroy --auto-approve
