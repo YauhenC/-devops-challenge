@@ -73,9 +73,9 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ secrets.AWS_DEFAULT_REGION }}
 
-      - uses: actions/download-artifact@master
+      - uses: actions/download-artifact@main
         with:
-          name: archive
+          name: app-demo-v1
           path: ./
 
       - name: Move artifact to terraform dir
