@@ -1,9 +1,9 @@
 terraform {
 
   backend "s3" {
-    bucket = "devops-challenge-tfstate"
+    bucket = "devops-challenge-terraform"
     key    = "lambda-challenge/terraform.tfstate"
-    region = "us-east-2"
+    region = "us-east-1"
   }
 
 }
