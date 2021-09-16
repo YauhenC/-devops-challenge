@@ -1,6 +1,6 @@
 # DevOps Engineer Challenge
 
-1. Here is used *Python* for this app. Source code is located in `src` directory, where: 
+1. Here is used *Java* for this app. Source code is located in `src` directory, where: 
 - `AppDemoApplication.java ` - simple lambda application,
 - `AppDemoApplicationTests.java` - simple unit tests for methods declared in `AppDemoApplication.java `.
 
