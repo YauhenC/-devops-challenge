@@ -22,4 +22,4 @@
 
 Examples:
 
-![alt Examples](images/examples.png)
+
