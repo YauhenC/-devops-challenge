@@ -22,11 +22,17 @@ jobs:
         java-version: '11'
         distribution: 'adopt'
         cache: gradle
-        working-directory: ./src
-        
+      
+          
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
     - name: Build with Gradle
       run: ./gradlew assemble 
+      
+      working-directory: ./src
+    - uses: actions/upload-artifact@main
+        with:
+          name: app-demo.jar
+          path: src/app-demo.jar
     
      
