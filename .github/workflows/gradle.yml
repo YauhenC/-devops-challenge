@@ -22,7 +22,14 @@ jobs:
         java-version: '11'
         distribution: 'adopt'
         cache: gradle
+        server-id: github # Value of the distributionManagement/repository/id field of the pom.xml
+        settings-path: ${{ github.workspace }} # location for the settings.xml file        
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
     - name: Build with Gradle
       run: ./gradlew build
+    - name: Publish to GitHub Packages
+      run: gradle publish
+      env:
+        USERNAME: ${{ github.actor }}
+        TOKEN: ${{ secrets.GITHUB_TOKEN }}
