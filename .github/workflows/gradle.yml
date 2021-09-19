@@ -31,8 +31,5 @@ jobs:
       
       working-directory: ./src
     - uses: actions/upload-artifact@main
-        with:
-          name: app-demo.jar
-          path: src/app-demo.jar
-    
+        
      
