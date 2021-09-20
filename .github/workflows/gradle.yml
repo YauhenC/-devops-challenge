@@ -97,7 +97,7 @@ jobs:
           path: ./
 
       - name: Move artifact to terraform dir
-        run: mv ./app-demo.zip ./terraform/app-demo.zip
+        run: ls
 
       - name: Terraform Init
         working-directory: ${{ env.WORK_DIR }}
