@@ -2,7 +2,7 @@
 project = "devops-challenge"
 region  = "us-east-1"
 #lambda variables
-filename = "*.jar"
+filename = "*.zip"
 handler  = "io.micronaut.function.aws.proxy.MicronautLambdaHandler"
 runtime  = "java11"
 
