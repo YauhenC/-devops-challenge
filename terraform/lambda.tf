@@ -3,7 +3,7 @@ resource "aws_lambda_function" "this" {
 
   filename = var.filename
   handler  = io.micronaut.function.aws.proxy.MicronautLambdaHandler
-  runtime  = ${var.lambda_runtime}"
+  runtime  = "java 11"
 
   role = aws_iam_role.lambda_role.arn
 }
