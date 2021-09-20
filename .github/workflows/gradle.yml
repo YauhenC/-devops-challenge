@@ -98,13 +98,9 @@ jobs:
         with:
           name: micronautguide-0.1-all
           path: ./
-
-      - name: Zip lambda artifact
-        run: |
-          zip micronautguide-0.1-all.zip micronautguide-0.1-all.jar
-          
+   
       - name: Move artifact to terraform dir
-        run: mv ./micronautguide-0.1-all.zip ./terraform/micronautguide-0.1-all.zip
+        run: mv ./micronautguide-0.1-all.jar ./terraform/micronautguide-0.1-all.jar
       
       - name: Terraform Init
         working-directory: ${{ env.WORK_DIR }}
