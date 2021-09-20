@@ -16,7 +16,7 @@ jobs:
 
   check:
     runs-on: ubuntu-latest
-    
+    needs: Caching_dependens
     steps:
     - uses: actions/checkout@v2
     - name: Set up JDK 11
@@ -33,6 +33,7 @@ jobs:
   
   Caching_dependens:
     runs-on: ubuntu-latest
+    needs: build
     steps:
      - uses: actions/checkout@v2
      - name: Set up JDK 11
