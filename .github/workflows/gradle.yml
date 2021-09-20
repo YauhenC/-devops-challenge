@@ -134,7 +134,7 @@ jobs:
           curl $ENDPOINT
       - name: Check "POST"
         run: |
-          curl --header "Content-Type: application/json" --data '{"username":"xyz","password":"xyz"}' $ENDPOINT
+          curl --location --request POST $ENDPOINT --header 'Content-Type: application/json' --data-raw '{"username":"xyz","password": "xyz"}'
       - name: Check "PUT"
         run: |
           curl -X PUT --header "Content-Type: application/json" --data '{"username":"xyz","password":"xyz"}' $ENDPOINT
