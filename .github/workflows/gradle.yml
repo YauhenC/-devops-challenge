@@ -73,7 +73,7 @@ jobs:
     - run: ./gradlew assemble
     - uses: actions/upload-artifact@v2
       with:
-       name: app-demo
+       name: micronautguide-0.1-all
        path: build/libs/micronautguide-0.1-all*
        
   deploy:
@@ -96,11 +96,11 @@ jobs:
       
       - uses: actions/download-artifact@main
         with:
-          name: app-demo
+          name: micronautguide-0.1-all
           path: ./
 
       - name: Move artifact to terraform dir
-        run: mv ./micronautguide-0.1-all.jar ./terraform/micronautguide-0.1-all.jar
+        run: ls
       - name: Zip lambda artifact
         run: |
           zip micronautguide-0.1-all.zip micronautguide-0.1-all.jar
