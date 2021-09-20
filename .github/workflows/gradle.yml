@@ -120,7 +120,7 @@ jobs:
         if: github.ref == 'refs/heads/main' && github.event_name == 'push'
         run: |
           terraform apply -auto-approve
-          echo "::set-output name=endpoint::$(terraform output -raw base_url)/api"
+          echo "::set-output name=endpoint::$(terraform output -raw base_url)api"
   test:
     runs-on: ubuntu-latest
     needs: deploy
