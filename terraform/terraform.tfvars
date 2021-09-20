@@ -3,7 +3,7 @@ project = "devops-challenge"
 region  = "us-east-1"
 #lambda variables
 filename = "*.jar"
-handler  = "app.lambda_handler"
-runtime  = "java 16"
+handler  = "io.micronaut.function.aws.proxy.MicronautLambdaHandler"
+runtime  = "java 11"
 
 route_key = "ANY /api"
