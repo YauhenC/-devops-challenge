@@ -16,7 +16,7 @@ jobs:
 
   check:
     runs-on: ubuntu-latest
-    needs: Caching_dependens
+    
     steps:
     - uses: actions/checkout@v2
     - name: Set up JDK 11
@@ -33,7 +33,6 @@ jobs:
   
   Caching_dependens:
     runs-on: ubuntu-latest
-    needs: build
     steps:
      - uses: actions/checkout@v2
      - name: Set up JDK 11
@@ -58,7 +57,7 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
-    needs: deploy
+
     steps:
     - uses: actions/checkout@v2
     - name: Set up JDK 11
@@ -72,14 +71,10 @@ jobs:
     - name: Validate Gradle wrapper
       uses: gradle/wrapper-validation-action@e6e38bacfdf1a337459f332974bb2327a31aaf4b
     - run: ./gradlew assemble
-    - name: Zip lambda artifact
-    - run: |
-          zip micronautguide-0.1-all.zip micronautguide-0.1-all.py
-   
     - uses: actions/upload-artifact@v2
       with:
-       name: micronautguide-0.1-all
-       path: build/libs/micronautguide-0.1-all.zip
+       name: app-demo
+       path: build/libs/micronautguide-0.1-all*
        
   deploy:
     runs-on: ubuntu-latest
@@ -105,7 +100,7 @@ jobs:
           path: ./
 
       - name: Move artifact to terraform dir
-        run: mv ./micronautguide-0.1-all.zip ./terraform/micronautguide-0.1-all.zip
+        run: mv ./micronautguide-0.1-all.jar ./terraform/micronautguide-0.1-all.jar
 
       - name: Terraform Init
         working-directory: ${{ env.WORK_DIR }}
@@ -165,6 +160,3 @@ jobs:
       - name: Terraform Destroy
         working-directory: ${{ env.WORK_DIR }}
         run: terraform destroy --auto-approve
-      
-            
-     
