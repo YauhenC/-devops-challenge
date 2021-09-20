@@ -67,10 +67,10 @@ jobs:
       run: chmod +x gradlew
     - name: Validate Gradle wrapper
       uses: gradle/wrapper-validation-action@e6e38bacfdf1a337459f332974bb2327a31aaf4b
-    - run: ./gradlew build
+    - run: ./gradlew assemble
     - uses: actions/upload-artifact@v2
       with:
-       name: Package
+       name: app-demo.jar
        path: build/libs/micronautguide-0.1-all*
        
   deploy:
