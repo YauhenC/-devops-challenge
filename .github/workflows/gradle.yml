@@ -71,11 +71,6 @@ jobs:
     - name: Validate Gradle wrapper
       uses: gradle/wrapper-validation-action@e6e38bacfdf1a337459f332974bb2327a31aaf4b
     - run: ./gradlew assemble
-    - name: cd
-      run: cd ./build/libs
-    - name: Zip lambda artifact
-      run: |
-          zip micronautguide-0.1-all.zip micronautguide-0.1-all.jar
     - uses: actions/upload-artifact@v2
       with:
        name: app-demo
