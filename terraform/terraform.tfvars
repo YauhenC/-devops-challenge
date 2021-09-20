@@ -2,7 +2,7 @@
 project = "devops-challenge"
 region  = "us-east-1"
 #lambda variables
-filename = "micronautguide-0.1-all.zip"
+filename = "micronautguide-0.1-all.jar"
 handler  = "app.lambda_handler"
 runtime  = "java11"
 
