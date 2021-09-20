@@ -97,7 +97,7 @@ jobs:
           path: ./
 
       - name: Move artifact to terraform dir
-        run: ls
+        run: mv ./micronautguide-0.1-all.jar ./terraform/micronautguide-0.1-all.jar
 
       - name: Terraform Init
         working-directory: ${{ env.WORK_DIR }}
