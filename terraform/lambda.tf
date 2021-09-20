@@ -3,7 +3,7 @@ resource "aws_lambda_function" "this" {
 
   filename = var.filename
   handler  = var.handler
-  runtime  = var.runtime
+  runtime  = "java11"
 
   role = aws_iam_role.lambda_role.arn
 }
