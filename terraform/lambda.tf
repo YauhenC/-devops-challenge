@@ -1,9 +1,9 @@
 resource "aws_lambda_function" "this" {
   function_name = "${lower(var.project)}-lambda"
 
-  filename = "micronautguide-0.1-all.jar"
-  handler  = "io.micronaut.function.aws.proxy.MicronautLambdaHandler"
-  runtime  = "java11"
+  filename = var.filename
+  handler  = var.handler
+  runtime  = var.runtime
 
   role = aws_iam_role.lambda_role.arn
 }
