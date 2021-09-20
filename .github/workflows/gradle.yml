@@ -10,7 +10,9 @@ on:
     branches: [ main ]
 
 jobs:
+
   check:
+  
     runs-on: ubuntu-latest
     
     steps:
@@ -28,6 +30,7 @@ jobs:
     - run: ./gradlew build 
   
   Caching_dependens:
+  
     runs-on: ubuntu-latest
     
     steps:
