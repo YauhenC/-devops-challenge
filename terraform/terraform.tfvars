@@ -4,6 +4,6 @@ region  = "us-east-1"
 #lambda variables
 filename = "*.jar"
 handler  = "io.micronaut.function.aws.proxy.MicronautLambdaHandler"
-runtime  = "java 11"
+runtime  = "java11"
 
 route_key = "ANY /api"
