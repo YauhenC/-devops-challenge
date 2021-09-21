@@ -104,7 +104,7 @@ jobs:
       
       - name: Terraform Init -migrate-state
         working-directory: ${{ env.WORK_DIR }}
-        run: terraform init
+        run: terraform init -migrate-state
 
       - name: Terraform Format
         working-directory: ${{ env.WORK_DIR }}
