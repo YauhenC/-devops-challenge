@@ -10,7 +10,7 @@ on:
     branches: [ main ]
 
 env:
-  AWS_DEFAULT_REGION: "us-east-1"
+  AWS_DEFAULT_REGION: "us-east-2"
 
 jobs:
 
