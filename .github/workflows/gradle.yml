@@ -132,7 +132,7 @@ jobs:
 
     steps:
       - name: check echo
-        run: echo ${{ needs.deploy.outputs.api_endpoint }
+        run: echo $ENDPOINT
       - name: Check "GET"
         run: |
           curl $ENDPOINT
