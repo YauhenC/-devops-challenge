@@ -1,6 +1,6 @@
 # Common variables
 project = "devops-challenge"
-region  = "us-east-2"
+region  = "us-east-1"
 #lambda variables
 filename = "./micronautguide-0.1-all.jar"
 handler  = "io.micronaut.function.aws.proxy.MicronautLambdaHandler"
