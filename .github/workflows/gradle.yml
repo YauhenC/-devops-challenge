@@ -121,12 +121,7 @@ jobs:
         run: |
           terraform apply -auto-approve
           echo "::set-output name=endpoint::$(terraform output -raw base_url)api"
-      - name: Check "GET"
-        run: |
-          curl $ENDPOINT
-      - name: Check "POST"
-        run: |
-          curl --location --request POST $ENDPOINT --header 'Content-Type: application/json' --data-raw '{"username":"xyz","password": "xyz"}'
+      
   test:
     runs-on: ubuntu-latest
     needs: deploy
@@ -137,7 +132,7 @@ jobs:
 
     steps:
       - name: check echo
-        run: echo "::set-output name=endpoint::$(terraform output -raw base_url)api"
+        run: echo ${{ needs.deploy.outputs.api_endpoint }
       - name: Check "GET"
         run: |
           curl $ENDPOINT
