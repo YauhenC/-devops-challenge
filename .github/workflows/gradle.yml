@@ -126,6 +126,7 @@ jobs:
     needs: deploy
 
     env:
+      run: echo "::set-output name=endpoint::$(terraform output -raw base_url)api"
       ENDPOINT: ${{ needs.deploy.outputs.api_endpoint }}
 
     steps:
