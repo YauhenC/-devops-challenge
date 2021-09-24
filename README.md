@@ -14,9 +14,6 @@
 - indicate (indicate java version and system for build),
 - build (build jar file),
 
-3.1 build docker-image.yml 
-- build docker image,
-
 
 4. To test the results you need to deploy this application and send request to an API endpoint. (when run locally to get URL endpoint you can use `$(terraform output -raw base_url)/api`)
 
