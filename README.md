@@ -10,7 +10,7 @@
 
 >*To run this code you need to create S3 bucket for storing tf state, IAM user with approptiate permissions and specify backend settings in `main.tf`. Also need to add values Secrets to GitHub repository **AWS_ACCESS_KEY_ID** and **AWS_SECRET_ACCESS_KEY***
 
-3. CI/CD with GitHub Action (`.github/workflows/Java CI with Maven`) with following jobs:
+3. CI/CD with GitHub Action (`.github/workflows/Java CI with gradle`) with following jobs:
 - indicate (indicate java version and system for build),
 - build (build jar file),
 
