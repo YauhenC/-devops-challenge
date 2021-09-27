@@ -1,9 +1,9 @@
 resource "aws_lambda_function" "this" {
   function_name = "${lower(var.project)}-lambda"
 
-  filename = var.filename
-  handler  = var.handler
-  runtime  = var.runtime
+  filename    = var.filename
+  handler     = var.handler
+  runtime     = var.runtime
   memory_size = var.memory_size
 
   role = aws_iam_role.lambda_role.arn
