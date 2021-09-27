@@ -13,6 +13,9 @@ variable "runtime" {
 variable "handler" {
   description = "Specify entrypoint function for Lambda"
 }
+variable "memory_size" {
+  description = "Specify Lambda memory limit. Default is 128 Mb"
+}
 variable "route_key" {
   description = "Specify route path for AWS API Gateway"
 }
